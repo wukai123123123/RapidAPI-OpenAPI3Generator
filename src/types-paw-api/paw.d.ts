@@ -371,11 +371,11 @@ declare class HTTPExchange {
     readonly requestMethod: string
     readonly requestUrl: string
     readonly requestBody: string
-    readonly requestHeaders: {[headerName: string]: string}
+    readonly requestHeaders: { [headerName: string]: string }
     readonly requestHeaderString: string
     readonly responseStatusCode: number
     readonly responseStatusLine: string
-    readonly responseHeaders: {[headerName: string]: string}
+    readonly responseHeaders: { [headerName: string]: string }
     readonly responseHeaderString: string
     readonly responseBody: string
     readonly responseTime: number
@@ -383,6 +383,7 @@ declare class HTTPExchange {
     readonly date: Date
 
     getRequestHeaderByName(headerName: string): string | null
+
     getResponseHeaderByName(headerName: string): string | null
 }
 

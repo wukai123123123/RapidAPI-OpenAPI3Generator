@@ -3,7 +3,7 @@
 /**
  * Helper types
  */
-export type MapKeyedWithString<T> = {[key: string] : T}
+export type MapKeyedWithString<T> = { [key: string]: T }
 export const NonRequiredLabel = 'NonRequired'
 export const BasicCredentialsLabel = 'Basic credentials'
 
@@ -229,12 +229,12 @@ export interface SchemaObject {
 
     type?: string
     allOf?: (SchemaObject | ReferenceObject)[]
-    oneOf?: ( SchemaObject | ReferenceObject)[]
-    anyOf?: ( SchemaObject | ReferenceObject)[]
-    not?: ( SchemaObject | ReferenceObject)[]
-    items?:  SchemaObject | ReferenceObject
+    oneOf?: (SchemaObject | ReferenceObject)[]
+    anyOf?: (SchemaObject | ReferenceObject)[]
+    not?: (SchemaObject | ReferenceObject)[]
+    items?: SchemaObject | ReferenceObject
     properties?: MapKeyedWithString<(SchemaObject | ReferenceObject)>
-    additionalProperties?: boolean |  SchemaObject | ReferenceObject
+    additionalProperties?: boolean | SchemaObject | ReferenceObject
     description?: string
     format?: string
     default?: any
