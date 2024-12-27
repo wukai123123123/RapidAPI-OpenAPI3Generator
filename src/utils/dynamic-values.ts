@@ -1,7 +1,7 @@
 import Paw from 'types/paw'
 
 const ENVIRONMENT_DYNAMIC_VALUE =
-  'com.luckymarmot.EnvironmentVariableDynamicValue'
+    'com.luckymarmot.EnvironmentVariableDynamicValue'
 const REQUEST_DYNAMIC_VALUE = 'com.luckymarmot.RequestVariableDynamicValue'
 const FILE_DYNAMIC_VALUE = 'com.luckymarmot.FileContentDynamicValue'
 
@@ -14,8 +14,8 @@ const FILE_DYNAMIC_VALUE = 'com.luckymarmot.FileContentDynamicValue'
  * @returns {DynamicValue} class instance
  */
 export const createDynamicValue = (
-  type: string,
-  props?: { [key: string]: any },
+    type: string,
+    props?: { [key: string]: any },
 ): DynamicValue => new DynamicValue(type, props)
 
 /**
@@ -27,7 +27,7 @@ export const createDynamicValue = (
  * @returns {DynamicString} class instance
  */
 export const createDynamicString = (
-  ...prop: DynamicStringComponent[]
+    ...prop: DynamicStringComponent[]
 ): DynamicString => new DynamicString(...prop)
 /**
  * @exports createEnvironmentValues
@@ -38,11 +38,11 @@ export const createDynamicString = (
  * @returns {DynamicValue} class instance
  */
 export const createEnvDynamicValue = (
-  environmentVariable: string,
+    environmentVariable: string,
 ): DynamicValue =>
-  createDynamicValue(ENVIRONMENT_DYNAMIC_VALUE, {
-    environmentVariable,
-  })
+    createDynamicValue(ENVIRONMENT_DYNAMIC_VALUE, {
+        environmentVariable,
+    })
 
 /**
  * @exports createRequestValues
@@ -53,7 +53,7 @@ export const createEnvDynamicValue = (
  * @returns {DynamicValue} class instance
  */
 export const createRequestValues = (variableId: string) =>
-  createDynamicValue(REQUEST_DYNAMIC_VALUE, { variableId })
+    createDynamicValue(REQUEST_DYNAMIC_VALUE, {variableId})
 
 /**
  * @exports createFileValues
@@ -62,7 +62,7 @@ export const createRequestValues = (variableId: string) =>
  * @returns {DynamicValue} class instance
  */
 export const createFileValues = (): DynamicValue =>
-  createDynamicValue(FILE_DYNAMIC_VALUE, { bookmarkData: null })
+    createDynamicValue(FILE_DYNAMIC_VALUE, {bookmarkData: null})
 
 /**
  * @exports convertEnvString
@@ -77,23 +77,23 @@ export const createFileValues = (): DynamicValue =>
  * @returns {string}
  */
 export function convertEnvString(
-  dynamicString: DynamicString,
-  context: Paw.Context,
+    dynamicString: DynamicString,
+    context: Paw.Context,
 ): string {
-  if (!dynamicString) return ''
-  return dynamicString.components
-    .map((component): string => {
-      if (typeof component === 'string') {
-        return component
-      }
-      if (component.type === ENVIRONMENT_DYNAMIC_VALUE) {
-        const envVarId = (component as any).environmentVariable
-        const envVar = context.getEnvironmentVariableById(envVarId)
-        if (envVar) {
-          return `{${envVar.name}}`
-        }
-      }
-      return component.getEvaluatedString()
-    })
-    .join('')
+    if (!dynamicString) return ''
+    return dynamicString.components
+        .map((component): string => {
+            if (typeof component === 'string') {
+                return component
+            }
+            if (component.type === ENVIRONMENT_DYNAMIC_VALUE) {
+                const envVarId = (component as any).environmentVariable
+                const envVar = context.getEnvironmentVariableById(envVarId)
+                if (envVar) {
+                    return `{${envVar.name}}`
+                }
+            }
+            return component.getEvaluatedString()
+        })
+        .join('')
 }

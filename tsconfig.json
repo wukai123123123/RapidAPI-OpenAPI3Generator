@@ -1,24 +1,36 @@
 {
-  "compilerOptions": {
-    "resolveJsonModule": true,
-    "outDir": "./dist/",
-    "sourceMap": true,
-    "noImplicitAny": true,
-    "module": "commonjs",
-    "target": "es5",
-    "lib": ["es6", "dom"],
-    "esModuleInterop": true,
-    "strictNullChecks": true,
-    "noEmit": true,
-    "baseUrl": "src",
-    "paths": {
-      "~": ["src/*"],
-      "lib": ["src/lib"],
-      "types": ["src/types"]
+    "compilerOptions": {
+        "resolveJsonModule": true,
+        "outDir": "./dist/",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "module": "commonjs",
+        "target": "es5",
+        "lib": [
+            "es6",
+            "dom"
+        ],
+        "esModuleInterop": true,
+        "strictNullChecks": true,
+        "noEmit": true,
+        "baseUrl": "src",
+        "paths": {
+            "~": [
+                "src/*"
+            ],
+            "lib": [
+                "src/lib"
+            ],
+            "types": [
+                "src/types"
+            ]
+        },
+        "noErrorTruncation": true,
+        "skipLibCheck": true,
+        "pretty": true
     },
-    "noErrorTruncation": true,
-    "skipLibCheck": true,
-    "pretty": true
-  },
-  "include": ["src", "paw.config.json"]
+    "include": [
+        "src",
+        "paw.config.json"
+    ]
 }

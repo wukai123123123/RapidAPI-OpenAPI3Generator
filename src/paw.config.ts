@@ -1,3 +1,3 @@
 import pkg from '../package.json'
 
-export default { ...pkg.config }
+export default {...pkg.config}

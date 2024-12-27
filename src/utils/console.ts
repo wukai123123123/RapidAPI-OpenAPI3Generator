@@ -8,14 +8,14 @@ const log = console.log
  * @returns {Object<any>}
  */
 function cyclicSupport() {
-  const seen = new WeakSet()
-  return function returnValue(key: string, value: unknown) {
-    if (typeof value === 'object' && value !== null) {
-      if (seen.has(value)) return
-      seen.add(value)
+    const seen = new WeakSet()
+    return function returnValue(key: string, value: unknown) {
+        if (typeof value === 'object' && value !== null) {
+            if (seen.has(value)) return
+            seen.add(value)
+        }
+        return value
     }
-    return value
-  }
 }
 
 /**
@@ -28,25 +28,25 @@ function cyclicSupport() {
  * @returns {string}
  */
 function parseObjects(data: unknown): string {
-  if (typeof data === 'object') {
-    const cyclic = JSON.parse(JSON.stringify(data, cyclicSupport(), 2))
+    if (typeof data === 'object') {
+        const cyclic = JSON.parse(JSON.stringify(data, cyclicSupport(), 2))
 
-    if (Array.isArray(cyclic)) {
-      const arr = cyclic.filter((item) => item !== null)
-      if (arr.length === 0) return 'null'
-      if (arr.length === 1) return JSON.stringify(arr[0], null, 2)
-      return JSON.stringify(arr, null, 2)
+        if (Array.isArray(cyclic)) {
+            const arr = cyclic.filter((item) => item !== null)
+            if (arr.length === 0) return 'null'
+            if (arr.length === 1) return JSON.stringify(arr[0], null, 2)
+            return JSON.stringify(arr, null, 2)
+        }
+
+        return JSON.stringify(data, cyclicSupport(), 2)
     }
 
-    return JSON.stringify(data, cyclicSupport(), 2)
-  }
-
-  try {
-    const context = JSON.parse(data as string)
-    return parseObjects(context)
-  } catch (error) {
-    return data as string
-  }
+    try {
+        const context = JSON.parse(data as string)
+        return parseObjects(context)
+    } catch (error) {
+        return data as string
+    }
 }
 
 /**e
@@ -59,11 +59,11 @@ function parseObjects(data: unknown): string {
  * @returns {void}
  */
 function pseudoLog(..._args: unknown[]): void {
-  const args = Array.from(_args).map((arg: unknown): unknown =>
-    typeof arg === 'object' ? parseObjects(arg) : arg,
-  )
-  args.unshift(`${typeof _args}: `)
-  log.apply(console, args)
+    const args = Array.from(_args).map((arg: unknown): unknown =>
+        typeof arg === 'object' ? parseObjects(arg) : arg,
+    )
+    args.unshift(`${typeof _args}: `)
+    log.apply(console, args)
 }
 
 /**
@@ -72,24 +72,24 @@ function pseudoLog(..._args: unknown[]): void {
  * @returns {Object}
  */
 const logger: Logger = {
-  /**
-   * @method info
-   * @summary - abstracts console.info, shows up in production build
-   * @param _args @
-   * @returns {void}
-   */
-  info: pseudoLog,
+    /**
+     * @method info
+     * @summary - abstracts console.info, shows up in production build
+     * @param _args @
+     * @returns {void}
+     */
+    info: pseudoLog,
 
-  /**
-   * @method log
-   * @summary - abstracts console.log, does not display in production build
-   * @param _args @
-   * @returns {void}
-   */
-  log: (..._args: unknown[]): void => {
-    if (process.env.NODE_ENV !== 'development') return
-    pseudoLog(..._args)
-  },
+    /**
+     * @method log
+     * @summary - abstracts console.log, does not display in production build
+     * @param _args @
+     * @returns {void}
+     */
+    log: (..._args: unknown[]): void => {
+        if (process.env.NODE_ENV !== 'development') return
+        pseudoLog(..._args)
+    },
 }
 
 export default logger

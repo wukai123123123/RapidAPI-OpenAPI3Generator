@@ -1,1 +1,1 @@
-export { default as OpenAPIv3Generator } from './exporter'
+export {default as OpenAPIv3Generator} from './exporter'
