@@ -52,10 +52,10 @@
         "webpack-cli": "^4.6.0"
     },
     "config": {
-        "name": "OpenAPIv3xGenerator-beta",
-        "title": "OpenAPI v3.x Generator (beta)",
-        "description": "An OpenAPI generator extension for Paw client.",
-        "identifier": "com.luckymarmot.PawExtensions.OpenAPIv3xGenerator-beta",
+        "name": "OpenAPIv3Generator",
+        "title": "OpenAPI v3.x Generator",
+        "description": "An OpenAPI generator extension for RapidAPI client.",
+        "identifier": "com.luckymarmot.PawExtensions.OpenAPIv3Generator",
         "fileExtensions": [
             "json",
             "yaml",
