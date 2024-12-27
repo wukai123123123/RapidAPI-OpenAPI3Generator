@@ -182,7 +182,7 @@ export function buildServerObject(
             }
         }
         return {
-            url: baseURL.href + basePathStr,
+            url: (baseURL.href && baseURL.href.endsWith('/') ? baseURL.href.slice(0, -1) : baseURL.href) + (basePathStr ? '/' + basePathStr : basePathStr),
             description: '',
             variables: variables || undefined,
         }
@@ -540,14 +540,19 @@ export function buildPathItemObject(
             security.push({[OAUTH2_DEFAULT_LABEL]: [...getOauth2Scopes]})
         }
 
+        let path = getPathPrefix.test(getRequestPath)
+            ? getRequestPath.replace(getPathPrefix, '').replace(/\/$/, '')
+            : getRequestPath
+        path = path?.endsWith('/') ? path.slice(0, -1) : path
+
+        let operationId = path && path.lastIndexOf('/') > 0 ? path.substring(path.lastIndexOf('/') + 1) : id
+
         const output = {
             method: method as string,
-            path: getPathPrefix.test(getRequestPath)
-                ? getRequestPath.replace(getPathPrefix, '').replace(/\/$/, '')
-                : getRequestPath,
+            path: path,
             summary: name,
             description,
-            operationId: id,
+            operationId: operationId,
             parameters,
             requestBody,
             responses,

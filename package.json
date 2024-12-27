@@ -6,12 +6,7 @@
     "license": "MIT",
     "repository": "git@github.com:luckymarmot/Paw-OpenAPI3Generator.git",
     "scripts": {
-        "start": "NODE_OPTIONS=--openssl-legacy-provider yarn dev:mac",
-        "dev:mac": "bash -c \"./node_modules/.bin/webpack --node-env development --watch -o $HOME/$npm_package_config_outputDir/$npm_package_config_identifier\"",
-        "dev:mac:static": "bash -c \"./node_modules/.bin/webpack --node-env development -o $HOME/$npm_package_config_outputDir/$npm_package_config_identifier\"",
-        "dev:web": "echo \"\n\tWork in progress...\n\"",
         "build:mac": "NODE_OPTIONS=--openssl-legacy-provider webpack --config ./webpack.config.babel.js",
-        "build:web": "yarn ",
         "test": "jest"
     },
     "devDependencies": {
@@ -53,7 +48,7 @@
     },
     "config": {
         "name": "OpenAPIv3Generator",
-        "title": "OpenAPI v3.x Generator",
+        "title": "OpenAPI v3 Generator",
         "description": "An OpenAPI generator extension for RapidAPI client.",
         "identifier": "com.luckymarmot.PawExtensions.OpenAPIv3Generator",
         "fileExtensions": [
@@ -64,7 +59,7 @@
         "languageHighlighter": "json",
         "inputs": "json",
         "help": "https://github.com/luckymarmot/Paw-OpenAPI3Generator/wiki",
-        "outputDir": "\"/Library/Containers/com.luckymarmot.Paw/Data/Library/Application Support/com.luckymarmot.Paw/Extensions\""
+        "outputDir": "\"$HOME/Library/Containers/com.luckymarmot.Paw/Data/Library/Application\\ Support/com.luckymarmot.Paw/Extensions\""
     },
     "dependencies": {
         "md5-typescript": "^1.0.5",
